@@ -7,13 +7,15 @@ function event(time) {
       }
     }, time);
 
-    let video = this.document.querySelector("video");
-    video.addEventListener("ended", function (e) {
-      let miniRecs = document.querySelector(".html5-endscreen");
-      if (miniRecs) {
-        miniRecs.style.display = "none";
-      }
-    });
+    let video = document.querySelector("video");
+    if (video) {
+      video.addEventListener("ended", function (e) {
+        let miniRecs = document.querySelector(".html5-endscreen");
+        if (miniRecs) {
+          miniRecs.style.display = "none";
+        }
+      });
+    }
   }
 }
 
@@ -26,14 +28,21 @@ window.addEventListener("load", function () {
       itpuAccount.click();
     }
   }
+
   const URL_TO_REDIRECT =
     "https://www.aiberry.com/info/dark-side-instagram-negatively-impacts-mental-health#:~:text=Instagram%20specifically%20can%20cause%20feelings,or%20anxious%20about%20our%20lives.";
   if (window.location.origin.includes("instagram.com")) {
     setTimeout(() => {
-      this.window.location.replace(URL_TO_REDIRECT);
+      window.location.replace(URL_TO_REDIRECT);
     }, 100000);
   }
 });
+
 window.addEventListener("popstate", function () {
   event(6000);
+  if (window.location.href.includes("youtube.com/shorts/")) {
+    setTimeout(() => {
+      window.location.replace("https://www.youtube.com/");
+    }, 6000);
+  }
 });
